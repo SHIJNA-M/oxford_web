@@ -396,34 +396,97 @@
     gap: clamp(4rem, 6vw, 6rem);
     max-width: min(85vw, 1000px);
   }
+  
+  .success-preview {
+    padding: 3.5rem;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
+  .stats-section {
+    padding: 3.5rem 0;
+  }
+  
+  .stats-header {
+    margin-bottom: 4rem;
+    padding: 0 1.5rem;
+  }
+  
+  .stats-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+  
   .stats-grid {
     grid-template-columns: repeat(3, minmax(160px, 1fr));
     gap: clamp(3rem, 5vw, 4rem);
     max-width: min(90vw, 850px);
+    padding: 0 1.5rem;
   }
 
   .stat-card-front,
   .stat-card-back {
     padding: 0.8rem;
   }
+  
+  .stat-card-front .counter {
+    font-size: 1.4rem;
+  }
+  
+  .stat-card-front .suffix {
+    font-size: 1rem;
+  }
+  
+  .success-preview {
+    padding: 2.5rem;
+    margin: 0 1.5rem;
+  }
+  
+  .success-content h3 {
+    font-size: 1.75rem;
+  }
+  
+  .success-content p {
+    font-size: 1rem;
+  }
+  
+  .brand-logos {
+    gap: 2rem;
+  }
+  
+  .brand-logo {
+    min-width: 100px;
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .brand-logo-image {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 @media (min-width: 480px) and (max-width: 767px) {
   .stats-section {
-    padding: 5rem 0;
+    padding: 3rem 0;
   }
 
   .stats-header {
     margin-bottom: 3rem;
+    padding: 0 1rem;
+  }
+  
+  .stats-header h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+  
+  .stats-header p {
+    font-size: 1.1rem;
   }
 
   .stats-grid {
     grid-template-columns: repeat(2, minmax(140px, 1fr));
     gap: clamp(2.5rem, 6vw, 3.5rem);
     max-width: min(85vw, 500px);
+    padding: 0 1rem;
   }
 
   .stat-card-front .counter {
@@ -433,22 +496,71 @@
   .stat-card-front .suffix {
     font-size: 1.1rem;
   }
+  
+  .stat-card-front .stat-label {
+    font-size: 0.7rem;
+  }
+  
+  .success-preview {
+    padding: 2rem;
+    margin: 0 1rem;
+  }
+  
+  .success-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .success-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .brand-logos {
+    gap: 1.5rem;
+  }
+  
+  .brand-logo {
+    min-width: 90px;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+  }
+  
+  .brand-logo-image {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 @media (max-width: 479px) {
   .stats-section {
-    padding: 4rem 0;
+    padding: 2.5rem 0;
   }
 
   .stats-header {
     margin-bottom: 2.5rem;
+    padding: 0 0.75rem;
+  }
+  
+  .stats-badge {
+    padding: 0.7rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .stats-header h2 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    margin-bottom: 1rem;
+  }
+  
+  .stats-header p {
+    font-size: 1rem;
   }
 
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
     max-width: min(80vw, 220px);
-    padding: 0 1rem;
+    padding: 0 0.75rem;
   }
 
   .stat-card-front,
@@ -492,6 +604,140 @@
 
   .stat-card-back .back-features li {
     font-size: 0.6rem;
+  }
+  
+  .success-preview {
+    padding: 1.5rem;
+    margin: 0 0.75rem;
+    border-radius: 12px;
+  }
+  
+  .success-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .success-content p {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .brand-logos {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .brand-logo {
+    min-width: 80px;
+    max-width: 200px;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .brand-logo-image {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .stats-section {
+    padding: 2rem 0;
+  }
+  
+  .stats-header {
+    padding: 0 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stats-badge {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .stats-header h2 {
+    font-size: clamp(1.4rem, 7vw, 2rem);
+  }
+  
+  .stats-header p {
+    font-size: 0.95rem;
+  }
+  
+  .stats-grid {
+    padding: 0 0.5rem;
+    max-width: min(85vw, 200px);
+  }
+  
+  .stat-card-front,
+  .stat-card-back {
+    padding: 0.75rem;
+  }
+  
+  .stat-card-front .stat-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  .stat-card-front .counter {
+    font-size: 1.5rem;
+  }
+  
+  .stat-card-front .suffix {
+    font-size: 1rem;
+  }
+  
+  .stat-card-front .stat-label {
+    font-size: 0.65rem;
+  }
+  
+  .success-preview {
+    padding: 1.25rem;
+    margin: 0 0.5rem;
+  }
+  
+  .success-content h3 {
+    font-size: 1.25rem;
+  }
+  
+  .success-content p {
+    font-size: 0.9rem;
+  }
+  
+  .brand-logo {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .brand-logo-image {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Tablet landscape specific */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .stats-section {
+    padding: 3rem 0;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    padding: 0 2rem;
+  }
+  
+  .success-preview {
+    padding: 2.5rem;
+    margin: 0 2rem;
+  }
+  
+  .brand-logos {
+    gap: 2.5rem;
   }
 }
 

@@ -551,6 +551,10 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .testimonials-section {
+    padding: 6rem 0;
+  }
+  
   .carousel-nav.prev {
     left: -60px;
   }
@@ -559,15 +563,32 @@
     right: -60px;
   }
   
+  .testimonial-card {
+    padding: 2.5rem;
+  }
+  
+  .testimonial-content p {
+    font-size: 1.2rem;
+  }
+  
   .alumni-cta {
     grid-template-columns: 1fr;
     gap: 2rem;
     text-align: center;
+    padding: 2.5rem;
   }
   
   .network-visualization {
     width: 250px;
     height: 250px;
+  }
+  
+  .stats-container {
+    gap: 1.5rem;
+  }
+  
+  .stat-card {
+    padding: 2rem;
   }
 }
 
@@ -576,66 +597,536 @@
     padding: 4rem 0;
   }
   
+  .testimonials-header {
+    margin-bottom: 4rem;
+    padding: 0 1rem;
+  }
+  
+  .testimonials-header h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+  
+  .testimonials-header p {
+    font-size: 1.1rem;
+  }
+  
   .carousel-nav {
     display: none;
   }
   
+  .testimonials-carousel {
+    margin-bottom: 4rem;
+    padding: 0 1rem;
+  }
+  
   .testimonial-card {
     padding: 2rem;
+    border-radius: 15px;
+  }
+  
+  .card-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .quote-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .rating .fa-star {
+    font-size: 1.1rem;
+  }
+  
+  .testimonial-content {
+    margin-bottom: 2rem;
+  }
+  
+  .testimonial-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
   }
   
   .testimonial-author {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .author-image img {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .image-border {
+    width: 78px;
+    height: 78px;
+  }
+  
+  .author-info h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .author-role {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .author-company {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .author-details {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .author-details span {
+    padding: 0.25rem 0.7rem;
+    font-size: 0.75rem;
   }
   
   .achievement-badge {
     position: static;
     margin-top: 1rem;
     align-self: center;
+    padding: 0.7rem 1.25rem;
+    font-size: 0.85rem;
+  }
+  
+  .carousel-indicators {
+    margin-top: 2.5rem;
+  }
+  
+  .indicator {
+    width: 50px;
+  }
+  
+  .alumni-stats {
+    margin-bottom: 4rem;
+    padding: 0 1rem;
   }
   
   .stats-container {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
   }
   
   .stat-card {
     padding: 2rem;
+    border-radius: 15px;
+  }
+  
+  .stat-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
+    border-radius: 15px;
+  }
+  
+  .stat-number {
+    font-size: 2.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+  }
+  
+  .stat-description {
+    font-size: 0.85rem;
+  }
+  
+  .alumni-cta {
+    padding: 2.5rem;
+    border-radius: 15px;
+    margin: 0 1rem;
+  }
+  
+  .cta-content h3 {
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .cta-content p {
+    font-size: 1rem;
+    margin-bottom: 1.75rem;
   }
   
   .cta-actions {
     flex-direction: column;
+    gap: 0.75rem;
   }
   
   .network-visualization {
     width: 200px;
     height: 200px;
   }
+  
+  .network-node {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .network-node.main {
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
+  }
+  
+  .connection {
+    width: 100px;
+  }
 }
 
 @media (max-width: 480px) {
+  .testimonials-section {
+    padding: 3rem 0;
+  }
+  
+  .testimonials-header {
+    margin-bottom: 3rem;
+    padding: 0 0.75rem;
+  }
+  
+  .testimonials-badge {
+    padding: 0.7rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .testimonials-header h2 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    margin-bottom: 1rem;
+  }
+  
+  .testimonials-header p {
+    font-size: 1rem;
+  }
+  
+  .testimonials-carousel {
+    margin-bottom: 3rem;
+    padding: 0 0.75rem;
+  }
+  
   .testimonial-card {
     padding: 1.5rem;
   }
   
-  .testimonial-content p {
+  .card-header {
+    margin-bottom: 1.25rem;
+  }
+  
+  .quote-icon {
+    width: 45px;
+    height: 45px;
     font-size: 1.1rem;
   }
   
+  .rating .fa-star {
+    font-size: 1rem;
+  }
+  
+  .testimonial-content {
+    margin-bottom: 1.75rem;
+  }
+  
+  .testimonial-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .testimonial-author {
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .author-image img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .image-border {
+    width: 68px;
+    height: 68px;
+  }
+  
+  .author-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .author-role {
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .author-company {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  
   .author-details {
-    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .author-details span {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  
+  .achievement-badge {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 20px;
+  }
+  
+  .carousel-indicators {
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  
+  .indicator {
+    width: 40px;
+    height: 3px;
+  }
+  
+  .alumni-stats {
+    margin-bottom: 3rem;
+    padding: 0 0.75rem;
   }
   
   .stats-container {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .stat-card {
+    padding: 1.75rem;
+  }
+  
+  .stat-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .stat-number {
+    font-size: 2.25rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .stat-description {
+    font-size: 0.8rem;
   }
   
   .alumni-cta {
     padding: 2rem;
+    margin: 0 0.75rem;
   }
   
   .cta-content h3 {
     font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-content p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tour-features {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .feature {
+    font-size: 0.85rem;
+  }
+  
+  .feature i {
+    font-size: 1rem;
+  }
+  
+  .network-visualization {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .network-node {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+  
+  .network-node.main {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .connection {
+    width: 80px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .testimonials-section {
+    padding: 2.5rem 0;
+  }
+  
+  .testimonials-header {
+    padding: 0 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .testimonials-badge {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .testimonials-header h2 {
+    font-size: clamp(1.4rem, 7vw, 2rem);
+  }
+  
+  .testimonials-header p {
+    font-size: 0.95rem;
+  }
+  
+  .testimonials-carousel {
+    padding: 0 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .testimonial-card {
+    padding: 1.25rem;
+  }
+  
+  .quote-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .testimonial-content p {
+    font-size: 0.95rem;
+  }
+  
+  .author-info h4 {
+    font-size: 1.1rem;
+  }
+  
+  .author-role {
+    font-size: 0.9rem;
+  }
+  
+  .author-company {
+    font-size: 0.85rem;
+  }
+  
+  .achievement-badge {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .alumni-stats {
+    padding: 0 0.5rem;
+  }
+  
+  .stat-card {
+    padding: 1.5rem;
+  }
+  
+  .stat-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .stat-label {
+    font-size: 0.95rem;
+  }
+  
+  .alumni-cta {
+    padding: 1.5rem;
+    margin: 0 0.5rem;
+  }
+  
+  .cta-content h3 {
+    font-size: 1.75rem;
+  }
+  
+  .cta-content p {
+    font-size: 0.9rem;
+  }
+  
+  .network-visualization {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .network-node {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .network-node.main {
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
+  }
+}
+
+/* Tablet landscape specific */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .testimonials-section {
+    padding: 5rem 0;
+  }
+  
+  .testimonials-header {
+    margin-bottom: 4rem;
+  }
+  
+  .testimonials-carousel {
+    margin-bottom: 4rem;
+  }
+  
+  .carousel-nav.prev {
+    left: -70px;
+  }
+  
+  .carousel-nav.next {
+    right: -70px;
+  }
+  
+  .alumni-cta {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    text-align: left;
+    padding: 3rem;
+  }
+  
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .network-visualization {
+    width: 280px;
+    height: 280px;
   }
 }

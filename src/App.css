@@ -167,4 +167,48 @@
     width: 45px;
     height: 45px;
   }
+  
+  /* Mobile-first optimizations */
+  .App {
+    overflow-x: hidden;
+  }
+  
+  /* Ensure all sections have proper mobile padding */
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .back-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 48px;
+    height: 48px;
+  }
+  
+  /* Tablet-specific optimizations */
+  section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .back-to-top {
+    bottom: 0.75rem;
+    right: 0.75rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  /* Extra small mobile optimizations */
+  section {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }

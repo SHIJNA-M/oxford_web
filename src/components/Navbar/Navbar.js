@@ -74,7 +74,10 @@ const Navbar = () => {
             <a href="#contact" onClick={(e) => { e.preventDefault(); handleNavigation('contact'); }}>Contact Us</a>
           </div>
 
-          <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+          <div 
+            className={`mobile-menu-toggle ${isMobileMenuOpen ? 'open' : ''}`} 
+            onClick={toggleMobileMenu}
+          >
             <span></span>
             <span></span>
             <span></span>
