@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npx react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -32,6 +32,10 @@
       "not dead",
       "not op_mini all"
     ],
+    "engines": {
+      "node": "18.x",
+      "npm": ">=9 <11"
+    },
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
