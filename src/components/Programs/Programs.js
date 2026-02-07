@@ -5,7 +5,23 @@ const Programs = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProgram, setSelectedProgram] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
   const sectionRef = useRef(null);
+  const modalRef = useRef(null);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,6 +39,89 @@ const Programs = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Handle touch events for mobile swipe gestures
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe || isRightSwipe) {
+      // Handle category navigation with swipe
+      const currentIndex = categories.findIndex(cat => cat.id === activeCategory);
+      if (isLeftSwipe && currentIndex < categories.length - 1) {
+        setActiveCategory(categories[currentIndex + 1].id);
+      } else if (isRightSwipe && currentIndex > 0) {
+        setActiveCategory(categories[currentIndex - 1].id);
+      }
+    }
+  };
+
+  // Enhanced modal handling for mobile
+  const openModal = (program) => {
+    setSelectedProgram(program);
+    document.body.style.overflow = 'hidden';
+    
+    // Focus management for accessibility
+    setTimeout(() => {
+      if (modalRef.current) {
+        modalRef.current.focus();
+      }
+    }, 100);
+  };
+
+  const closeModal = () => {
+    setSelectedProgram(null);
+    document.body.style.overflow = 'unset';
+  };
+
+  // Handle escape key for modal
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && selectedProgram) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedProgram]);
+
+  // Handle contact actions
+  const handleContact = (program = null) => {
+    const message = program 
+      ? `Hi! I'm interested in the ${program.title} program. Could you please provide more details?`
+      : 'Hi! I would like to know more about your programs.';
+    
+    const phoneNumber = '8156998798';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    if (isMobile) {
+      window.open(whatsappUrl, '_blank');
+    } else {
+      // For desktop, show phone number
+      alert(`Contact us at: ${phoneNumber}\nOr visit our WhatsApp: ${whatsappUrl}`);
+    }
+  };
+
+  const handleApplyNow = (program) => {
+    const message = `Hi! I would like to apply for the ${program.title} program. Please guide me through the application process.`;
+    const phoneNumber = '8156998798';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    window.open(whatsappUrl, '_blank');
+  };
 
   const programsData = [
     // Fashion Designing Courses
@@ -178,16 +277,6 @@ const Programs = () => {
     ? programsData
     : programsData.filter(program => program.category === activeCategory);
 
-  const openModal = (program) => {
-    setSelectedProgram(program);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setSelectedProgram(null);
-    document.body.style.overflow = 'unset';
-  };
-
   return (
     <section id="programs" className="programs-section" ref={sectionRef}>
       <div className="container">
@@ -200,13 +289,19 @@ const Programs = () => {
           </p>
         </div>
 
-        {/* Category Filters */}
-        <div className={`category-filters ${isVisible ? 'animate-fadeInUp' : ''}`}>
+        {/* Category Filters with Touch Support */}
+        <div 
+          className={`category-filters ${isVisible ? 'animate-fadeInUp' : ''}`}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {categories.map((category) => (
             <button
               key={category.id}
               className={`filter-btn ${activeCategory === category.id ? 'active' : ''}`}
               onClick={() => setActiveCategory(category.id)}
+              aria-label={`Filter by ${category.name}`}
             >
               <i className={category.icon}></i>
               <span>{category.name}</span>
@@ -227,7 +322,7 @@ const Programs = () => {
             >
               <div className="card-header">
                 <div className="card-image">
-                  <img src={program.image} alt={program.title} />
+                  <img src={program.image} alt={program.title} loading="lazy" />
                   <div className="image-overlay">
                     <div className="program-icon">
                       <i className={program.icon}></i>
@@ -268,11 +363,16 @@ const Programs = () => {
                   <button
                     className="btn btn-primary"
                     onClick={() => openModal(program)}
+                    aria-label={`View details for ${program.title}`}
                   >
                     <i className="fas fa-info-circle"></i>
                     View Details
                   </button>
-                  <button className="btn btn-secondary">
+                  <button 
+                    className="btn btn-secondary"
+                    onClick={() => handleContact(program)}
+                    aria-label={`Contact us about ${program.title}`}
+                  >
                     <i className="fas fa-phone"></i>
                     Contact Us
                   </button>
@@ -343,11 +443,23 @@ const Programs = () => {
         </div>
       </div>
 
-      {/* Program Detail Modal */}
+      {/* Enhanced Program Detail Modal for Mobile */}
       {selectedProgram && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeModal}>
+          <div 
+            className="modal-content" 
+            onClick={(e) => e.stopPropagation()}
+            ref={modalRef}
+            tabIndex="-1"
+            role="dialog"
+            aria-labelledby="modal-title"
+            aria-describedby="modal-description"
+          >
+            <button 
+              className="modal-close" 
+              onClick={closeModal}
+              aria-label="Close modal"
+            >
               <i className="fas fa-times"></i>
             </button>
 
@@ -359,8 +471,8 @@ const Programs = () => {
                 </div>
               </div>
               <div className="modal-title">
-                <h2>{selectedProgram.title}</h2>
-                <p>{selectedProgram.description}</p>
+                <h2 id="modal-title">{selectedProgram.title}</h2>
+                <p id="modal-description">{selectedProgram.description}</p>
                 <div className="modal-meta">
                   <span><i className="fas fa-clock"></i> {selectedProgram.duration}</span>
                   <span><i className="fas fa-rupee-sign"></i> {selectedProgram.fee}</span>
@@ -397,11 +509,19 @@ const Programs = () => {
             </div>
 
             <div className="modal-footer">
-              <button className="btn btn-primary">
+              <button 
+                className="btn btn-primary"
+                onClick={() => handleApplyNow(selectedProgram)}
+                aria-label={`Apply for ${selectedProgram.title}`}
+              >
                 <i className="fas fa-paper-plane"></i>
                 Apply Now
               </button>
-              <button className="btn btn-secondary">
+              <button 
+                className="btn btn-secondary"
+                onClick={() => handleContact(selectedProgram)}
+                aria-label={`Contact us about ${selectedProgram.title}`}
+              >
                 <i className="fas fa-phone"></i>
                 Contact Us
               </button>
